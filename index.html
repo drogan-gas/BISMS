@@ -18,8 +18,17 @@
         }
     </style>
 </head>
+<!-- 載入 iframe-resizer -->
+<script src="https://cloudflare.com"></script>
+
+<!-- 初始化 -->
+<script>
+  iFrameResize({ log: true }, '#gas-app');
+</script>
+
+    
 <body>
-    <!-- 替換為您的 GAS Web App 部署連結 -->
-    <iframe src="https://script.google.com/macros/s/AKfycbxKU-1Q6UHFyyvhOSTF4bOehh9rkJl5Xq8j5KXEy8ueSSy2Ju0e8PaxrCxGWAsxtLl-/exec" style="width:100%; height:100vh; border:none;"></iframe>
-</body>
+<!-- 設定你的 iframe，注意必須給定一個 id -->
+<iframe id="gas-app" src="https://script.google.com/macros/s/AKfycbwOJUVdnJtiBwPVecqhn9NOZnFaI2AfoOnNf-yrPL38zlBtvIlYL65ffHqMEwTUFnBd/exec" style="width: 100%; border: none;"></iframe>
+</body>    
 </html>

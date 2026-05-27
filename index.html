@@ -1,33 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <title>🏭安裝工程管理系統</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程管理系統</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden; /* 防止主頁面出現雙滾動條 */
-      font-size: 18px;
-      line-height: 1.6;
-      -webkit-tap-highlight-color: transparent;
-      overscroll-behavior-y: contain;
-      scrollbar-gutter: stable;
-        }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
-<!-- 載入 iframe-resizer -->
-<script src="https://cloudflare.com"></script>
-
-<!-- 初始化 -->
-<script>
-  iFrameResize({ log: true }, '#gas-app');
-</script>
-
-    
 <body>
-<!-- 設定你的 iframe，注意必須給定一個 id -->
-<iframe id="gas-app" src="https://script.google.com/macros/s/AKfycbwOJUVdnJtiBwPVecqhn9NOZnFaI2AfoOnNf-yrPL38zlBtvIlYL65ffHqMEwTUFnBd/exec" style="width: 100%; border: none;"></iframe>
-</body>    
+    <iframe src="https://script.google.com/macros/s/AKfycbwOJUVdnJtiBwPVecqhn9NOZnFaI2AfoOnNf-yrPL38zlBtvIlYL65ffHqMEwTUFnBd/exec"></iframe>
+</body>
 </html>

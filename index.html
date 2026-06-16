@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BISMS 鍋爐安裝與工程監理系統</title>
+    <title>設備安裝工程管理系統</title>
     <style>
         html, body {
             margin: 0;
@@ -29,10 +29,12 @@
         (function() {
             const gasBaseUrl = "https://script.google.com/macros/s/AKfycbwOJUVdnJtiBwPVecqhn9NOZnFaI2AfoOnNf-yrPL38zlBtvIlYL65ffHqMEwTUFnBd/exec";
             
-            // 取得目前的網址參數並穿透至 iframe
-            const currentSearch = window.location.search;
-            const iframeUrl = gasBaseUrl + currentSearch;
+            // 取得目前的網址參數與當前網頁 base URL，並合併穿透至 iframe
+            const parentUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            const searchParams = new URLSearchParams(window.location.search);
+            searchParams.set('parentUrl', parentUrl);
             
+            const iframeUrl = gasBaseUrl + "?" + searchParams.toString();
             document.getElementById('gasFrame').src = iframeUrl;
         })();
     </script>

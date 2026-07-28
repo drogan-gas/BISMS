@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="設備安裝管理">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%230f172a'/><path d='M160 368h192v32H160zm-32-80h256v32H128zm64-80h128v32H192zm64-112a48 48 0 0 0-48 48v32h96V144a48 48 0 0 0-48-48z' fill='%2338bdf8'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%230f172a'/><path d='M160 368h192v32H160zm-32-80h256v32H128zm64-80h128v32H192zm64-112a48 48 0 0 0-48 48v32h96V144a48 48 0 0 0-48-48z' fill='%2338bdf8'/></svg>">
     <title>🏭設備安裝工程管理系統</title>
     <style>
         html, body {
@@ -27,14 +33,31 @@
 
     <script>
         (function() {
-            const gasBaseUrl = "https://script.google.com/macros/s/AKfycbwOJUVdnJtiBwPVecqhn9NOZnFaI2AfoOnNf-yrPL38zlBtvIlYL65ffHqMEwTUFnBd/exec";
+            var execUrl = "https://script.google.com/macros/s/AKfycbwOJUVdnJtiBwPVecqhn9NOZnFaI2AfoOnNf-yrPL38zlBtvIlYL65ffHqMEwTUFnBd/exec";
+            var devUrl = "https://script.google.com/macros/s/AKfycbyfDCX9snXCotmspYw3UYLYXWIBS_0nb5rHE4bi5IM/dev";
             
-            // 取得目前的網址參數與當前網頁 base URL，並合併穿透至 iframe
-            const parentUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-            const searchParams = new URLSearchParams(window.location.search);
+            var searchParams = new URLSearchParams(window.location.search);
+            var urlEnv = searchParams.get('env') || (searchParams.get('dev') === '1' ? 'dev' : '');
+            
+            if (urlEnv) {
+                try {
+                    localStorage.setItem('gas_env', urlEnv);
+                } catch (e) {}
+            }
+            
+            var savedEnv = '';
+            try {
+                savedEnv = localStorage.getItem('gas_env') || '';
+            } catch (e) {}
+            
+            var currentEnv = urlEnv || savedEnv || 'exec';
+            
+            var gasBaseUrl = (currentEnv === 'dev') ? devUrl : execUrl;
+            
+            var parentUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
             searchParams.set('parentUrl', parentUrl);
             
-            const iframeUrl = gasBaseUrl + "?" + searchParams.toString();
+            var iframeUrl = gasBaseUrl + "?" + searchParams.toString();
             document.getElementById('gasFrame').src = iframeUrl;
         })();
     </script>
